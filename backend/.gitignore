@@ -1,0 +1,7 @@
+# Dependencies
+/node_modules
+
+# Environment variables
+.env
+# gerar-chave jwt
+gerar-chave.js
