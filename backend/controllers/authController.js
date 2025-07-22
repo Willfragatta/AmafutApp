@@ -21,11 +21,18 @@ exports.register = async (req, res, next) => {
       email,
       password,
       role,
+      status: 'pending', // Sempre começa como pendente
     });
 
     // Gera o token e envia como resposta
     const token = generateToken(user._id);
-    res.status(201).json({ success: true, token });
+    res.status(201).json({ success: true, token, user: { 
+      _id: user._id, 
+      name: user.name, 
+      email: user.email, 
+      role: user.role, 
+      status: user.status 
+    }});
 
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
@@ -51,6 +58,11 @@ exports.login = async (req, res, next) => {
       return res.status(401).json({ success: false, error: 'Credenciais inválidas' });
     }
 
+    // Verifica se o usuário está aprovado
+    if (user.status !== 'approved') {
+      return res.status(403).json({ success: false, error: 'Conta aguardando aprovação do administrador.' });
+    }
+
     // Compara a senha digitada com a senha do banco
     const isMatch = await user.matchPassword(password);
 
@@ -60,8 +72,64 @@ exports.login = async (req, res, next) => {
 
     // Gera o token e envia como resposta
     const token = generateToken(user._id);
-    res.status(200).json({ success: true, token });
+    res.status(200).json({ success: true, token, user: { 
+      _id: user._id, 
+      name: user.name, 
+      email: user.email, 
+      role: user.role, 
+      status: user.status 
+    }});
 
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
+// @desc    Listar usuários pendentes de aprovação
+// @route   GET /api/auth/pending
+// @access  Private/Admin
+exports.getPendingUsers = async (req, res) => {
+  try {
+    const users = await User.find({ status: 'pending' }).select('-password');
+    res.status(200).json({ success: true, users });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
+// @desc    Aprovar usuário
+// @route   PUT /api/auth/approve/:id
+// @access  Private/Admin
+exports.approveUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { status: 'approved' },
+      { new: true }
+    ).select('-password');
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'Usuário não encontrado' });
+    }
+    res.status(200).json({ success: true, user });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
+// @desc    Rejeitar usuário
+// @route   PUT /api/auth/reject/:id
+// @access  Private/Admin
+exports.rejectUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { status: 'rejected' },
+      { new: true }
+    ).select('-password');
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'Usuário não encontrado' });
+    }
+    res.status(200).json({ success: true, user });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }

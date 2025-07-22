@@ -7,6 +7,10 @@ const connectDB = require('./config/db');
 // Importa os ficheiros de rota
 const authRoutes = require('./routes/authRoutes');
 const athleteRoutes = require('./routes/athleteRoutes');
+const eventRoutes = require('./routes/eventRoutes');
+const athleteAnalysisRoutes = require('./routes/athleteAnalysisRoutes');
+const goalRoutes = require('./routes/goalRoutes');
+const notificationRoutes = require('./routes/notificationRoutes');
 
 // Carrega as variáveis de ambiente do ficheiro .env
 dotenv.config();
@@ -31,6 +35,10 @@ app.get('/', (req, res) => {
 // Monta as rotas da API
 app.use('/api/auth', authRoutes);
 app.use('/api/athletes', athleteRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/athlete-analyses', athleteAnalysisRoutes);
+app.use('/api/goals', goalRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 
 // Define a porta do servidor. Usa a variável de ambiente ou 5000 como padrão.

@@ -27,6 +27,11 @@ const userSchema = new mongoose.Schema(
       enum: ['atleta', 'admin'],
       default: 'atleta',
     },
+    status: {
+      type: String,
+      enum: ['pending', 'approved', 'rejected'],
+      default: 'pending',
+    },
   },
   {
     timestamps: true,
