@@ -223,9 +223,9 @@ Este projeto é desenvolvido para fins educacionais.
 
 ## 👨‍💻 Desenvolvedor
 
-- **Nome**: [Seu Nome]
-- **Email**: [seu.email@exemplo.com]
-- **GitHub**: [@seu-usuario]
+- **Nome**: Wilian Fragata
+- **Email**: william_fragatta@hotmail.com
+- **GitHub**: Willfragatta
 
 ---
 
