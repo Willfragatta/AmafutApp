@@ -1,0 +1,39 @@
+<div class="eventos-container">
+  <mat-card *ngFor="let event of events" class="evento-card">
+    <mat-card-header>
+      <mat-card-title>{{ event.modalidade | titlecase }} - {{ event.local }}</mat-card-title>
+      <mat-card-subtitle>{{ event.data | date:'dd/MM/yyyy' }} {{ event.horario }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="evento-info">
+        <div><mat-icon>sports</mat-icon> {{ event.nome_competicao || 'Treino/Amistoso' }}</div>
+        <div *ngIf="event.fase"><mat-icon>emoji_events</mat-icon> {{ event.fase }}</div>
+        <div *ngIf="event.contra"><mat-icon>groups</mat-icon> Contra: {{ event.contra }}</div>
+        <div *ngIf="event.observacoes"><mat-icon>info</mat-icon> {{ event.observacoes }}</div>
+        <div><mat-icon>person</mat-icon> Convocados: {{ event.atletas_convocados?.length || 0 }}</div>
+        <div><mat-icon>check_circle</mat-icon> Status: {{ event.status | titlecase }}</div>
+      </div>
+      <div class="evento-actions" *ngIf="canConfirm(event)">
+        <button mat-raised-button color="primary" (click)="openConfirmDialog(event)">Confirmar Presença</button>
+      </div>
+      <div *ngIf="selectedEvent && selectedEvent._id === event._id" class="confirm-dialog">
+        <form [formGroup]="confirmForm">
+          <div class="confirm-btns">
+            <button mat-stroked-button color="primary" [disabled]="confirmLoading" (click)="confirmPresence('confirmado')" type="button">Confirmado!</button>
+            <button mat-stroked-button color="warn" [disabled]="confirmLoading" type="button" (click)="confirmForm.get('status')?.setValue('nao_posso')">Não posso!</button>
+          </div>
+          <div *ngIf="confirmForm.get('status')?.value === 'nao_posso'">
+            <mat-form-field appearance="outline" class="motivo-field">
+              <mat-label>Motivo da ausência</mat-label>
+              <input matInput formControlName="motivo" maxlength="100" placeholder="Ex: Trabalho, Estudo, Familiar, Outro">
+            </mat-form-field>
+            <button mat-raised-button color="warn" [disabled]="confirmLoading || !confirmForm.get('motivo')?.value" (click)="confirmPresence('nao_posso')" type="button">Enviar motivo</button>
+          </div>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf="!events.length && !loading" class="no-events">
+    <p>Nenhum evento encontrado.</p>
+  </div>
+</div>

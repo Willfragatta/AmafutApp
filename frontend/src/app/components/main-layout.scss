@@ -1,0 +1,142 @@
+// Cores principais
+$primary: #222;
+$accent: #ffd600;
+$background: #f7f7f7;
+
+.main-container {
+  height: 100vh;
+  background: #f7f7f7;
+}
+
+.main-sidenav {
+  width: 220px;
+  background: #222;
+  color: #fff;
+  .sidenav-header {
+    padding: 20px 12px 8px 12px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ffd600;
+      .logo-text {
+        color: #ffd600;
+        letter-spacing: 2px;
+      }
+      mat-icon {
+        color: #ffd600;
+        font-size: 1.4rem;
+      }
+    }
+  }
+  mat-nav-list {
+    margin-top: 12px;
+    a {
+      color: #fff;
+      font-weight: 500;
+      border-radius: 8px;
+      margin: 2px 0;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: background 0.2s, color 0.2s;
+      &:hover, &.active {
+        background: rgba(255, 214, 0, 0.12);
+        color: #ffd600;
+        mat-icon {
+          color: #ffd600;
+        }
+      }
+      mat-icon {
+        margin-right: 8px;
+        color: #fff;
+        font-size: 1.3rem;
+        min-width: 24px;
+      }
+      span {
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}
+
+.main-content {
+  min-height: 100vh;
+  background: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-toolbar {
+  background: #222;
+  color: #ffd600;
+  box-shadow: 0 2px 8px rgba(34,34,34,0.08);
+  .toolbar-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #ffd600;
+    margin-left: 8px;
+    letter-spacing: 2px;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  button {
+    color: #ffd600 !important;
+  }
+}
+
+.menu-btn {
+  margin-right: 8px;
+}
+
+.main-router-content {
+  flex: 1 1 auto;
+  padding: 24px 8px 8px 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .main-sidenav {
+    width: 170px;
+    .sidenav-header {
+      padding: 10px 4px 4px 4px;
+      .logo {
+        font-size: 1rem;
+      }
+    }
+    mat-nav-list a {
+      font-size: 0.95rem;
+      padding: 7px 6px;
+      gap: 6px;
+    }
+  }
+  .main-router-content {
+    padding: 12px 2px 2px 2px;
+  }
+  .main-toolbar {
+    .toolbar-title {
+      font-size: 1rem;
+    }
+  }
+}
+
+.main-sidenav ::-webkit-scrollbar {
+  width: 6px;
+  background: #222;
+}
+.main-sidenav ::-webkit-scrollbar-thumb {
+  background: #ffd600;
+  border-radius: 8px;
+}

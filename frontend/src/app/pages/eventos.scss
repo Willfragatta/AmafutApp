@@ -1,0 +1,83 @@
+.eventos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.evento-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(34,34,34,0.08);
+  min-width: 320px;
+}
+
+mat-card-header {
+  background: #222;
+  color: #ffd600;
+  border-radius: 16px 16px 0 0;
+}
+
+mat-card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+mat-card-subtitle {
+  font-size: 0.95rem;
+  color: #ffd600;
+}
+
+.evento-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #444;
+  mat-icon {
+    font-size: 1.1rem;
+    margin-right: 4px;
+    color: #ffd600;
+    vertical-align: middle;
+  }
+}
+
+.evento-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+}
+
+.confirm-dialog {
+  margin-top: 16px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(34,34,34,0.06);
+}
+
+.confirm-btns {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.motivo-field {
+  width: 100%;
+}
+
+.no-events {
+  text-align: center;
+  color: #888;
+  margin-top: 32px;
+}
+
+@media (max-width: 700px) {
+  .eventos-container {
+    gap: 16px;
+  }
+  .evento-card {
+    min-width: 0;
+  }
+}

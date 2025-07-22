@@ -1,0 +1,86 @@
+<mat-sidenav-container class="main-container">
+  <mat-sidenav #sidenav mode="over" [(opened)]="sidenavOpened" class="main-sidenav" [fixedInViewport]="true">
+    <div class="sidenav-header">
+      <div class="logo">
+        <mat-icon>sports_soccer</mat-icon>
+        <span class="logo-text">AMAFUT</span>
+      </div>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" (click)="toggleSidenav()">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/perfil" (click)="toggleSidenav()">
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </a>
+      <a mat-list-item routerLink="/eventos" (click)="toggleSidenav()">
+        <mat-icon>event</mat-icon>
+        <span>Eventos</span>
+      </a>
+      <a *ngIf="isAdmin" mat-list-item routerLink="/analise-atletas" (click)="toggleSidenav()">
+        <mat-icon>analytics</mat-icon>
+        <span>Análise de Atletas</span>
+      </a>
+      <a *ngIf="isAthlete" mat-list-item routerLink="/meu-desempenho" (click)="toggleSidenav()">
+        <mat-icon>trending_up</mat-icon>
+        <span>Meu Desempenho</span>
+      </a>
+      <a mat-list-item routerLink="/metas" (click)="toggleSidenav()">
+        <mat-icon>flag</mat-icon>
+        <span>Metas</span>
+      </a>
+      <a mat-list-item routerLink="/info-equipe" (click)="toggleSidenav()">
+        <mat-icon>group</mat-icon>
+        <span>Info da Equipe</span>
+      </a>
+      <a mat-list-item routerLink="/notificacoes" (click)="toggleSidenav()">
+        <mat-icon matBadge="{{notificationsCount}}" matBadgeColor="warn">notifications</mat-icon>
+        <span>Notificações</span>
+      </a>
+      <a *ngIf="isAdmin" mat-list-item routerLink="/admin/aprovar-usuarios" (click)="toggleSidenav()">
+        <mat-icon>verified_user</mat-icon>
+        <span>Aprovar Usuários</span>
+      </a>
+      <a *ngIf="isAdmin" mat-list-item routerLink="/admin/criar-evento" (click)="toggleSidenav()">
+        <mat-icon>add_circle</mat-icon>
+        <span>Criar Evento</span>
+      </a>
+      <a *ngIf="isAdmin" mat-list-item routerLink="/admin/criar-analise" (click)="toggleSidenav()">
+        <mat-icon>analytics</mat-icon>
+        <span>Criar Análise</span>
+      </a>
+      <a *ngIf="isAdmin" mat-list-item routerLink="/admin/criar-meta" (click)="toggleSidenav()">
+        <mat-icon>flag</mat-icon>
+        <span>Criar Meta</span>
+      </a>
+      <a mat-list-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Sair</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <mat-toolbar color="primary" class="main-toolbar">
+      <button mat-icon-button (click)="toggleSidenav()" class="menu-btn">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">AMAFUT</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="goToNotifications()">
+        <mat-icon matBadge="{{notificationsCount}}" matBadgeColor="warn">notifications</mat-icon>
+      </button>
+      <button mat-icon-button (click)="goToProfile()">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="main-router-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

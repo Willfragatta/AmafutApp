@@ -1,0 +1,64 @@
+<div class="admin-evento-container">
+  <mat-card class="admin-evento-card">
+    <mat-card-header>
+      <mat-card-title>Criar Novo Evento</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()" class="evento-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Modalidade</mat-label>
+          <mat-select formControlName="modalidade" required>
+            <mat-option value="treino">Treino</mat-option>
+            <mat-option value="amistoso">Amistoso</mat-option>
+            <mat-option value="campeonato">Campeonato</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Data</mat-label>
+          <input matInput formControlName="data" type="date" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Horário</mat-label>
+          <input matInput formControlName="horario" type="time" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Local</mat-label>
+          <input matInput formControlName="local" maxlength="20" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="form.get('modalidade')?.value === 'amistoso' || form.get('modalidade')?.value === 'campeonato'">
+          <mat-label>Contra</mat-label>
+          <input matInput formControlName="contra" maxlength="20">
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="form.get('modalidade')?.value === 'campeonato'">
+          <mat-label>Nome da Competição</mat-label>
+          <input matInput formControlName="nome_competicao" maxlength="20">
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="form.get('modalidade')?.value === 'campeonato'">
+          <mat-label>Fase</mat-label>
+          <mat-select formControlName="fase">
+            <mat-option value="Fase de grupos">Fase de grupos</mat-option>
+            <mat-option value="Oitavas de final">Oitavas de final</mat-option>
+            <mat-option value="Quartas de final">Quartas de final</mat-option>
+            <mat-option value="Semi final">Semi final</mat-option>
+            <mat-option value="Final">Final</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Observações</mat-label>
+          <textarea matInput formControlName="observacoes" maxlength="300" rows="2" placeholder="Campo livre para dicas, transporte, material, etc."></textarea>
+        </mat-form-field>
+        <div class="convocacao-section">
+          <label class="convocacao-title">Atletas Convocados</label>
+          <div class="convocacao-list">
+            <mat-checkbox *ngFor="let atleta of atletasConvocaveis" [checked]="atletasConvocados.value.includes(atleta._id)" (change)="toggleConvocado(atleta, $event.checked)">
+              {{ atleta.name }} <span *ngIf="atleta.lesao === 'sim'" class="lesionado">(Lesionado)</span>
+            </mat-checkbox>
+          </div>
+        </div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || loading">
+          {{ loading ? 'Salvando...' : 'Criar Evento' }}
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

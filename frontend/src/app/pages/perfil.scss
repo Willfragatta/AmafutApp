@@ -1,0 +1,55 @@
+.perfil-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 32px;
+}
+
+.perfil-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(34,34,34,0.08);
+}
+
+mat-card-header {
+  background: #222;
+  color: #ffd600;
+  border-radius: 16px 16px 0 0;
+}
+
+mat-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+mat-card-subtitle {
+  font-size: 0.95rem;
+  color: #ffd600;
+}
+
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button[type="submit"] {
+  align-self: flex-end;
+  min-width: 120px;
+}
+
+@media (max-width: 600px) {
+  .perfil-card {
+    max-width: 100%;
+    margin: 0 2px;
+  }
+  .perfil-container {
+    margin-top: 16px;
+  }
+}

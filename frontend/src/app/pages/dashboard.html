@@ -1,0 +1,72 @@
+<div class="page-placeholder">
+  <h1>Dashboard</h1>
+  <p>Bem-vindo a pagina do AMAFUT!</p>
+</div>
+
+<div class="dashboard-grid">
+  <mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title>Próximos Eventos</mat-card-title>
+      <mat-card-subtitle>Veja os próximos compromissos do time</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list *ngIf="events.length; else noEvents">
+        <mat-list-item *ngFor="let event of events">
+          <mat-icon matListIcon>event</mat-icon>
+          <div matLine>{{ event.modalidade | titlecase }} - {{ event.local }}</div>
+          <div matLine class="secondary">{{ event.data | date:'dd/MM/yyyy' }} {{ event.horario }}</div>
+        </mat-list-item>
+      </mat-list>
+      <ng-template #noEvents>
+        <p>Nenhum evento encontrado.</p>
+      </ng-template>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="goToEventos()">Ver todos</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title>Notificações Recentes</mat-card-title>
+      <mat-card-subtitle>Fique por dentro das novidades</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list *ngIf="notifications.length; else noNotifications">
+        <mat-list-item *ngFor="let n of notifications">
+          <mat-icon matListIcon>notifications</mat-icon>
+          <div matLine>{{ n.mensagem }}</div>
+          <div matLine class="secondary">{{ n.data | date:'dd/MM/yyyy HH:mm' }}</div>
+        </mat-list-item>
+      </mat-list>
+      <ng-template #noNotifications>
+        <p>Nenhuma notificação encontrada.</p>
+      </ng-template>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="goToNotificacoes()">Ver todas</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title>Metas em Aberto</mat-card-title>
+      <mat-card-subtitle>Acompanhe suas metas lançadas</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list *ngIf="goals.length; else noGoals">
+        <mat-list-item *ngFor="let goal of goals">
+          <mat-icon matListIcon>flag</mat-icon>
+          <div matLine>{{ goal.tipo | titlecase }}: {{ goal.descricao }}</div>
+          <div matLine class="secondary">Prazo: {{ goal.prazo }}</div>
+        </mat-list-item>
+      </mat-list>
+      <ng-template #noGoals>
+        <p>Nenhuma meta em aberto.</p>
+      </ng-template>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="goToMetas()">Ver todas</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,171 @@
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 450px;
+}
+
+mat-card {
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+mat-card-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.logo-text {
+  color: #1976d2;
+}
+
+.logo-sport {
+  color: #ff6b35;
+}
+
+mat-card-subtitle {
+  color: #666;
+  font-size: 1rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.register-button {
+  height: 48px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 0 0;
+}
+
+.login-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.login-link span {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+// Responsividade
+@media (max-width: 480px) {
+  .register-container {
+    padding: 10px;
+  }
+  
+  .register-card {
+    max-width: 100%;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  .register-button {
+    height: 44px;
+    font-size: 1rem;
+  }
+  
+  .register-form {
+    gap: 12px;
+  }
+}
+
+// Animações de entrada
+.register-card {
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Efeitos hover
+mat-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease;
+}
+
+.register-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+  transition: all 0.3s ease;
+}
+
+// Estilos específicos para o select
+mat-form-field mat-select {
+  width: 100%;
+}
+
+// Melhorias na acessibilidade
+mat-form-field {
+  margin-bottom: 8px;
+}
+
+// Estilo para campos com erro
+mat-form-field.ng-invalid.ng-touched {
+  .mat-form-field-outline {
+    color: #f44336;
+  }
+}
+
+// Estilo para campos válidos
+mat-form-field.ng-valid.ng-touched {
+  .mat-form-field-outline {
+    color: #4caf50;
+  }
+}

@@ -1,0 +1,102 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'material-icons/iconfont/material-icons.css';
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background: #f7f7f7;
+  color: #222;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #ffd600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #222;
+}
+
+.page-placeholder, .no-events, .no-data {
+  text-align: center;
+  color: #888;
+  margin-top: 32px;
+  font-size: 1.1rem;
+}
+
+.mat-mdc-snack-bar-container {
+  &.success-snackbar {
+    --mdc-snackbar-container-color: #4caf50;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+  &.error-snackbar {
+    --mdc-snackbar-container-color: #f44336;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.mat-mdc-raised-button, .mat-mdc-stroked-button {
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  min-width: 120px;
+  min-height: 40px;
+}
+
+.mat-mdc-card {
+  border-radius: 16px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #222;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffd600;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  html, body {
+    font-size: 15px;
+  }
+  .mat-mdc-card {
+    margin: 0 2px;
+  }
+}
