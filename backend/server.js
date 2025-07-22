@@ -11,6 +11,7 @@ const eventRoutes = require('./routes/eventRoutes');
 const athleteAnalysisRoutes = require('./routes/athleteAnalysisRoutes');
 const goalRoutes = require('./routes/goalRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Carrega as variáveis de ambiente do ficheiro .env
 dotenv.config();
@@ -39,6 +40,7 @@ app.use('/api/events', eventRoutes);
 app.use('/api/athlete-analyses', athleteAnalysisRoutes);
 app.use('/api/goals', goalRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/users', userRoutes);
 
 
 // Define a porta do servidor. Usa a variável de ambiente ou 5000 como padrão.

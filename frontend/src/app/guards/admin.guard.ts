@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { Injectable } from '@angular/core'; // Injectable usei pra criar o guard
+import { CanActivate, Router } from '@angular/router'; // CanActivate usei pra verificar se o usuário pode acessar a página
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -8,8 +8,8 @@ import { AuthService } from '../services/auth.service';
 export class AdminGuard implements CanActivate {
 
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private authService: AuthService, // pra autenticar o usuário
+    private router: Router // pra redirecionar as páginas
   ) {}
 
   canActivate(): boolean {

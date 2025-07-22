@@ -16,6 +16,30 @@ const userSchema = new mongoose.Schema(
         'Por favor, adicione um email válido',
       ],
     },
+    // Novos campos para perfil do atleta
+    rg: {
+      type: String,
+      maxlength: 20
+    },
+    cpf: {
+      type: String,
+      maxlength: 20
+    },
+    posicao: {
+      type: String,
+      maxlength: 30
+    },
+    altura: {
+      type: Number,
+      min: 0
+    },
+    data_nascimento: {
+      type: Date
+    },
+    idade: {
+      type: Number,
+      min: 0
+    },
     password: {
       type: String,
       required: [true, 'Por favor, adicione uma senha'],

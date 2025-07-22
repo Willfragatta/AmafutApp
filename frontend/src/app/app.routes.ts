@@ -1,7 +1,7 @@
-import { Routes } from '@angular/router';
-import { MainLayoutComponent } from './components/main-layout';
-import { AuthGuard } from './guards/auth.guard';
-import { AdminGuard } from './guards/admin.guard';
+import { Routes } from '@angular/router'; // usado para definir as rotas
+import { MainLayoutComponent } from './components/main-layout'; // usado para definir o layout principal
+import { AuthGuard } from './guards/auth.guard'; // usado para definir o guard de autenticação
+import { AdminGuard } from './guards/admin.guard'; // usado para definir o guard de admin
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

@@ -26,10 +26,10 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './perfil.html',
   styleUrl: './perfil.scss'
 })
-export class Perfil implements OnInit {
-  private userService = inject(UserService);
-  private authService = inject(AuthService);
-  private snackBar = inject(MatSnackBar);
+export class Perfil implements OnInit { // pra criar o componente
+  private userService = inject(UserService); // pra autenticar o usuário
+  private authService = inject(AuthService); // pra autenticar o usuário
+  private snackBar = inject(MatSnackBar); // pra criar o snackbar
   form: FormGroup;
   loading = true;
   user: any = null;
@@ -39,7 +39,12 @@ export class Perfil implements OnInit {
     this.form = inject(FormBuilder).group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      // Campos adicionais podem ser adicionados aqui
+      rg: [''],
+      cpf: [''],
+      posicao: [''],
+      altura: [''],
+      data_nascimento: [''],
+      idade: ['']
     });
   }
 
@@ -55,7 +60,13 @@ export class Perfil implements OnInit {
         this.user = res.user || {};
         this.form.patchValue({
           name: this.user.name,
-          email: this.user.email
+          email: this.user.email,
+          rg: this.user.rg,
+          cpf: this.user.cpf,
+          posicao: this.user.posicao,
+          altura: this.user.altura,
+          data_nascimento: this.user.data_nascimento ? this.user.data_nascimento.substring(0, 10) : '',
+          idade: this.user.idade
         });
       },
       error: () => {
@@ -67,13 +78,31 @@ export class Perfil implements OnInit {
 
   saveProfile() {
     if (this.form.invalid) return;
-    this.userService.updateProfile(this.form.value).subscribe({
+    const data = { ...this.form.value };
+    // Converter altura e idade para número, se preenchidos
+    if (data.altura) data.altura = Number(data.altura);
+    if (data.idade) data.idade = Number(data.idade);
+    this.userService.updateProfile(data).subscribe({
       next: () => {
         this.snackBar.open('Perfil atualizado com sucesso!', 'Fechar', { duration: 3000 });
         this.loadProfile();
       },
       error: () => {
         this.snackBar.open('Erro ao atualizar perfil', 'Fechar', { duration: 4000 });
+      }
+    });
+  }
+
+  deleteProfile() {
+    if (!confirm('Tem certeza que deseja excluir seu perfil? Esta ação não pode ser desfeita.')) return;
+    this.userService.deleteProfile().subscribe({
+      next: () => {
+        this.snackBar.open('Perfil excluído com sucesso!', 'Fechar', { duration: 3000 });
+        // Redirecionar para login ou página inicial após exclusão
+        window.location.href = '/login';
+      },
+      error: () => {
+        this.snackBar.open('Erro ao excluir perfil', 'Fechar', { duration: 4000 });
       }
     });
   }

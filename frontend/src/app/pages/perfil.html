@@ -11,12 +11,38 @@
           <input matInput formControlName="name" required>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>Endereço</mat-label>
-          <input matInput formControlName="email" required type="text">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required type="email">
         </mat-form-field>
-        <!-- Vou adicionar mais coisas depois aqui -->
+        <mat-form-field appearance="outline">
+          <mat-label>RG</mat-label>
+          <input matInput formControlName="rg" maxlength="20">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>CPF</mat-label>
+          <input matInput formControlName="cpf" maxlength="20">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Posição</mat-label>
+          <input matInput formControlName="posicao" maxlength="30">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Altura (cm)</mat-label>
+          <input matInput formControlName="altura" type="number" min="0">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput formControlName="data_nascimento" type="date">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Idade</mat-label>
+          <input matInput formControlName="idade" type="number" min="0">
+        </mat-form-field>
         <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || loading">
           Salvar
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="deleteProfile()" [disabled]="loading" style="margin-left: 16px;">
+          Excluir Perfil
         </button>
       </form>
     </mat-card-content>

@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { AuthService } from '../../services/auth.service';
-import { LoginRequest } from '../../models/user.model';
+import { Component } from '@angular/core'; // Component usei pra criar o componente
+import { CommonModule } from '@angular/common'; // CommonModule usei pra importar o módulo comum
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; // FormBuilder usei pra criar o formulário
+import { Router } from '@angular/router'; // Router usei pra redirecionar as páginas
+import { MatCardModule } from '@angular/material/card'; // MatCardModule usei pra criar o card
+import { MatFormFieldModule } from '@angular/material/form-field'; // MatFormFieldModule usei pra criar o formulário
+import { MatInputModule } from '@angular/material/input'; // MatInputModule usei pra criar o input
+import { MatButtonModule } from '@angular/material/button'; // MatButtonModule usei pra criar o botão
+import { MatIconModule } from '@angular/material/icon'; // MatIconModule usei pra criar o ícone
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; // MatSnackBar usei pra criar o snackbar
+import { AuthService } from '../../services/auth.service'; // AuthService usei pra autenticar o usuário
+import { LoginRequest } from '../../models/user.model'; // LoginRequest usei pra criar o login
 
 @Component({
   selector: 'app-login',

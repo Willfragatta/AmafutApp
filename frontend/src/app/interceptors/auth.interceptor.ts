@@ -1,15 +1,15 @@
 import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { inject } from '@angular/core'; // inject usei pra injetar o AuthService e o Router
+import { Router } from '@angular/router'; // Router usei pra redirecionar as páginas
+import { catchError, throwError } from 'rxjs'; // catchError usei pra tratar os erros
+import { AuthService } from '../services/auth.service'; // AuthService usei pra autenticar o usuário
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const authService = inject(AuthService);
-  const router = inject(Router);
+  const authService = inject(AuthService); // pra autenticar o usuário
+  const router = inject(Router); // pra redirecionar as páginas
 
   // Obtém o token do localStorage
-  const token = authService.getToken();
+  const token = authService.getToken(); // pra pegar o token do localStorage
 
   // Se existe um token, adiciona no header Authorization
   if (token) {

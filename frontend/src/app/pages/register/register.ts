@@ -1,20 +1,20 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { AuthService } from '../../services/auth.service';
-import { RegisterRequest } from '../../models/user.model';
+import { Component } from '@angular/core'; // Component usei pra criar o componente
+import { CommonModule } from '@angular/common'; // CommonModule usei pra importar o módulo comum
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms'; // FormBuilder usei pra criar o formulário
+import { Router } from '@angular/router'; // Router usei pra redirecionar as páginas
+import { MatCardModule } from '@angular/material/card'; // MatCardModule usei pra criar o card
+import { MatFormFieldModule } from '@angular/material/form-field'; // MatFormFieldModule usei pra criar o formulário
+import { MatInputModule } from '@angular/material/input'; // MatInputModule usei pra criar o input
+import { MatButtonModule } from '@angular/material/button'; // MatButtonModule usei pra criar o botão
+import { MatIconModule } from '@angular/material/icon'; // MatIconModule usei pra criar o ícone
+import { MatSelectModule } from '@angular/material/select'; // MatSelectModule usei pra criar o select
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'; // MatSnackBar usei pra criar o snackbar
+import { AuthService } from '../../services/auth.service'; // AuthService usei pra autenticar o usuário
+import { RegisterRequest } from '../../models/user.model'; // RegisterRequest usei pra criar o registro
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
+  selector: 'app-register', // pra chamar o componente
+  standalone: true, // pra usar o componente em outro componente
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -30,16 +30,16 @@ import { RegisterRequest } from '../../models/user.model';
   styleUrl: './register.scss'
 })
 export class RegisterComponent {
-  registerForm: FormGroup;
-  loading = false;
-  hidePassword = true;
-  hideConfirmPassword = true;
+  registerForm: FormGroup; // pra criar o formulário
+  loading = false; // pra verificar se o formulário está carregando
+  hidePassword = true; // pra esconder a senha
+  hideConfirmPassword = true; // pra esconder a confirmação de senha
 
   constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private snackBar: MatSnackBar
+    private fb: FormBuilder, // pra criar o formulário
+    private authService: AuthService, // pra autenticar o usuário
+    private router: Router, // pra redirecionar as páginas
+    private snackBar: MatSnackBar // pra criar o snackbar
   ) {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
